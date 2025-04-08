@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Environment
+.env
+
+# Dependencies
+venv/ 
+
+# Git
+.git/
