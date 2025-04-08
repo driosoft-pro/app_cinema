@@ -65,3 +65,5 @@ sistema_venta_entrada_cinema/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
+Danna Isabella Mosquera - 
