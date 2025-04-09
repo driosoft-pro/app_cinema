@@ -1,22 +1,35 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
+import unittest
 from controllers.controlador_peliculas import ControladorPeliculas
 from models.pelicula import Pelicula
+from datetime import datetime, timedelta
 
-def test_agregar_y_listar_peliculas():
-    controlador = ControladorPeliculas()
-    peli = Pelicula("Avatar 2", "Ciencia ficción", "PG-13", 160, "Español", True)
-    controlador.agregar_pelicula(peli)
-    assert peli in controlador.listar_peliculas()
+class TestControladorPeliculas(unittest.TestCase):
 
-def test_carga_peliculas_predeterminadas():
-    controlador = ControladorPeliculas()
-    controlador.cargar_peliculas_predeterminadas()
-    assert len(controlador.listar_peliculas()) == 20
+    def setUp(self):
+        self.controlador = ControladorPeliculas()
+
+    def test_agregar_y_listar_peliculas(self):
+        fechas = [{
+            "fecha": (datetime.now() + timedelta(days=2)).strftime("%Y-%m-%d"),
+            "hora": "18:00",
+            "jornada": "noche"
+        }]
+        pelicula = Pelicula("Interstellar", "Ciencia ficción", "PG-13", fechas, 169, "Inglés", True)
+        self.controlador.agregar_pelicula(pelicula)
+        peliculas = self.controlador.listar_peliculas()
+        self.assertEqual(len(peliculas), 1)
+        self.assertEqual(peliculas[0].titulo, "Interstellar")
+
+    def test_buscar_por_titulo(self):
+        self.controlador.cargar_peliculas_predeterminadas()
+        resultados = self.controlador.buscar_por_titulo("avatar")
+        self.assertEqual(len(resultados), 1)
+        self.assertIn("Avatar", resultados[0].titulo)
+
+    def test_cargar_peliculas_predeterminadas(self):
+        self.controlador.cargar_peliculas_predeterminadas()
+        peliculas = self.controlador.listar_peliculas()
+        self.assertEqual(len(peliculas), 3)
 
 if __name__ == "__main__":
-    test_agregar_y_listar_peliculas()
-    test_carga_peliculas_predeterminadas()
-    print("✅ Test de películas (agregar + carga predeterminada) pasaron correctamente.")
+    unittest.main()
