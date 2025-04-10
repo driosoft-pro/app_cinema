@@ -43,7 +43,6 @@ Este proyecto es una aplicación en consola desarrollada en Python que permite g
 - **Programación orientada a objetos (POO):**  
   - Herencia, encapsulamiento, polimorfismo (sobrecarga y sobreescritura).
 - **Rich** y **Pyfiglet** para la interfaz en consola.
-- **Archivos JSON** para almacenamiento de datos persistente.
 - **Entorno virtual** para la gestión de dependencias.
 - **PEP8** para la documentación y comentarios del código.
 
@@ -58,6 +57,23 @@ app_cinema/
 ├── .gitignore
 ├── README.md
 │
+├── doc/
+│   ├── diagramaClaseSistemaVentaCinema.png
+│   ├── diagramaFlujoSistemaVentaCinema.png
+│   ├── requerimientos.txt
+│   └── requerimientosDetallados.txt
+│
+├── img/
+│   └── imagenes de aplicacion en funcionamiento .jpg
+│
+├── pseudocodigo/
+│   ├── calculo_precios.md
+│   ├── comprar_entrada.md
+│   ├── estructura_principal.md
+│   ├── gestion_peliculas.md
+│   ├── registro_usuario.md
+│   └── validaciones.md
+│
 ├── controllers/
 │   ├── __init__.py
 │   ├── controlador_menu_comidas.py
@@ -67,12 +83,6 @@ app_cinema/
 │   ├── controlador_salas.py
 │   ├── controlador_ticket.py
 │   └── controlador_usuarios.py
-│
-├── doc/
-│   ├── diagramaClaseSistemaVentaCinema.png
-│   ├── diagramaFlujoSistemaVentaCinema.png
-│   ├── requerimientos.txt
-│   └── requerimientosDetallados.txt
 │
 ├── models/
 │   ├── __init__.py
@@ -84,14 +94,6 @@ app_cinema/
 │   ├── silla.py
 │   ├── ticket.py
 │   └── usuario.py
-│
-├── pseudocodigo/
-│   ├── calculo_precios.md
-│   ├── comprar_entrada.md
-│   ├── estructura_principal.md
-│   ├── gestion_peliculas.md
-│   ├── registro_usuario.md
-│   └── validaciones.md
 │
 ├── services/
 │   ├── auth_services.py
