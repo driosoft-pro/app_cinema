@@ -1,28 +1,76 @@
 from dataclasses import dataclass
 from typing import Optional, Literal
-from datetime import datetime
 
 EstadoTicketLiteral = Literal["activa", "cancelada"]
 TipoTransaccionLiteral = Literal["reserva", "compra"]
 
 @dataclass
 class Ticket:
-    """Representa una boleta de cine (ticket) para una función"""
-    codigo: str  # Código único
-    id_usuario: str  # ID del cliente que reservó o compró
-    id_pelicula: str  # ID de la película
-    sala: str  # Sala 2D o 3D
-    fecha_funcion: str  # formato: 'YYYY-MM-DD'
-    hora_funcion: str  # formato: 'HH:MM'
-    jornada: str  # Mañana, tarde, noche
-    id_silla: str  # ID de la silla asignada
-    tipo_transaccion: TipoTransaccionLiteral  # compra o reserva
+    codigo: str
+    id_usuario: str
+    id_pelicula: str
+    sala: str
+    fecha_funcion: str
+    hora_funcion: str
+    jornada: str
+    id_silla: str
+    tipo_transaccion: TipoTransaccionLiteral
     estado: EstadoTicketLiteral = "activa"
-    id_pago: Optional[str] = None  # Solo si es compra
+    id_pago: Optional[str] = None
     precio_total: Optional[float] = 0.0
 
+    # --- Métodos de acceso (getters) ---
+    def get_codigo(self) -> str:
+        return self.codigo
+
+    def get_id_usuario(self) -> str:
+        return self.id_usuario
+
+    def get_id_pelicula(self) -> str:
+        return self.id_pelicula
+
+    def get_sala(self) -> str:
+        return self.sala
+
+    def get_fecha_funcion(self) -> str:
+        return self.fecha_funcion
+
+    def get_hora_funcion(self) -> str:
+        return self.hora_funcion
+
+    def get_jornada(self) -> str:
+        return self.jornada
+
+    def get_id_silla(self) -> str:
+        return self.id_silla
+
+    def get_tipo_transaccion(self) -> str:
+        return self.tipo_transaccion
+
+    def get_estado(self) -> str:
+        return self.estado
+
+    def get_id_pago(self) -> Optional[str]:
+        return self.id_pago
+
+    def get_precio_total(self) -> Optional[float]:
+        return self.precio_total
+
+    # --- Métodos de modificación (setters) ---
+    def set_estado(self, nuevo_estado: EstadoTicketLiteral) -> None:
+        self.estado = nuevo_estado
+
+    def set_id_pago(self, nuevo_id_pago: str) -> None:
+        self.id_pago = nuevo_id_pago
+
+    def set_precio_total(self, nuevo_precio: float) -> None:
+        self.precio_total = nuevo_precio
+
+    def set_silla(self, nueva_silla: str) -> None:
+        self.id_silla = nueva_silla
+
+    # --- Diccionario para serialización ---
     def a_diccionario(self) -> dict:
-        """Convierte el ticket a diccionario para serialización"""
         return {
             "codigo": self.codigo,
             "id_usuario": self.id_usuario,

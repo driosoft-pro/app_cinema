@@ -14,6 +14,27 @@ class Sala:
         """
         self._nombre = nombre
         self._sillas = []
+        self._funciones = []
+    
+    def agregar_funcion(self, fecha: str, hora: str) -> bool:
+        """
+        Agrega una función a la sala si no hay conflictos de horario.
+        Devuelve True si se agregó, False si hay conflicto.
+        """
+        for f in self._funciones:
+            if f["fecha"] == fecha and f["hora"] == hora:
+                return False  # Ya hay una función en esa fecha y hora
+        self._funciones.append({"fecha": fecha, "hora": hora})
+        return True
+    
+    def esta_disponible(self, fecha: str, hora: str) -> bool:
+        """
+        Verifica si la sala está libre en esa fecha y hora.
+        """
+        return all(f["fecha"] != fecha or f["hora"] != hora for f in self._funciones)
+
+    def obtener_funciones(self):
+        return self._funciones
 
     def obtener_sillas_disponibles(self):
         """Devuelve la lista de sillas disponibles (no ocupadas)."""

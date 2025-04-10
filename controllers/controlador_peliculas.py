@@ -4,9 +4,24 @@ from datetime import datetime, timedelta
 class ControladorPeliculas:
     def __init__(self):
         self.peliculas = []
+        self.cargar_peliculas_predeterminadas()
 
     def agregar_pelicula(self, pelicula: Pelicula):
         self.peliculas.append(pelicula)
+
+    def eliminar_pelicula(self, titulo):
+        for pelicula in self.peliculas:
+            if pelicula.titulo == titulo:
+                self.peliculas.remove(pelicula)
+                return True
+        return False
+    
+    def editar_pelicula(self, titulo_original, pelicula_editada):
+        for i, pelicula in enumerate(self.peliculas):
+            if pelicula.titulo == titulo_original:
+                self.peliculas[i] = pelicula_editada
+                return True
+        return False
 
     def listar_peliculas(self):
         return self.peliculas
@@ -35,3 +50,6 @@ class ControladorPeliculas:
         ]
 
         self.peliculas.extend(predeterminadas)
+
+    def obtener_peliculas_activas(self):
+        return [p for p in self.peliculas if p.estado == 1]   

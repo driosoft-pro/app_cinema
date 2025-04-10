@@ -7,7 +7,7 @@ class Pelicula:
         titulo: str,
         genero: str,
         clasificacion: Literal["G", "PG", "PG-13", "R", "C"],
-        fecha: List[Dict[str, str]],
+        fechas: List[Dict[str, str]],
         duracion: int,
         idioma: str,
         subtitulada: bool = False,
@@ -16,7 +16,7 @@ class Pelicula:
         self.__titulo = titulo
         self.__genero = genero
         self.__clasificacion = clasificacion
-        self.__fecha = fecha  # [{"fecha": "2025-04-10", "hora": "15:00", "jornada": "tarde"}]
+        self.__fechas = fechas  # [{"fecha": "2025-04-10", "hora": "15:00", "jornada": "tarde"}]
         self.__duracion = duracion
         self.__idioma = idioma
         self.__subtitulada = subtitulada
@@ -30,7 +30,7 @@ class Pelicula:
     @property
     def clasificacion(self): return self.__clasificacion
     @property
-    def fecha(self): return self.__fecha
+    def fecha(self): return self.__fechas
     @property
     def duracion(self): return self.__duracion
     @property
@@ -51,7 +51,7 @@ class Pelicula:
             "titulo": self.__titulo,
             "genero": self.__genero,
             "clasificacion": self.__clasificacion,
-            "fecha": self.__fecha,
+            "fecha": self.__fechas,
             "duracion": self.__duracion,
             "idioma": self.__idioma,
             "subtitulada": self.__subtitulada,
