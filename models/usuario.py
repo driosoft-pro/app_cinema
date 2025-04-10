@@ -79,6 +79,10 @@ class Cliente(Usuario):
     def get_compras(self) -> List:
         return self.__compras
 
+    def es_admin(self) -> bool:
+        return False
+
+
 
 class Administrador(Usuario):
     """
