@@ -53,3 +53,6 @@ class ControladorSalas:
     def actualizar_sala(self, sala: Sala):
         """Actualiza la sala dentro del diccionario."""
         self.__salas[sala.get_nombre().split()[-1].upper()] = sala
+    
+    def obtener_sala_por_id(self, id_sala: str) -> Union[Sala2D, Sala3D, None]:
+        return self.__salas.get(id_sala.upper())
