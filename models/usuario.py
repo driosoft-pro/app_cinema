@@ -20,6 +20,10 @@ class Usuario:
         self.__correo = correo
         self.__contrasena = contrasena
 
+    @property
+    def id_usuario(self) -> Optional[int]:
+        return self.__cedula
+
     def get_cedula(self) -> Optional[int]:
         return self.__cedula
 
