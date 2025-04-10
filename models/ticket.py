@@ -85,3 +85,15 @@ class Ticket:
             "id_pago": self.id_pago,
             "precio_total": self.precio_total
         }
+    
+    def __str__(self) -> str:
+        return (
+            f"🎟️ Ticket #{self.codigo}\n"
+            f"👤 Usuario: {self.id_usuario}\n"
+            f"🎬 Película: {self.id_pelicula}\n"
+            f"🛋️ Sala: {self.sala}\n"
+            f"📅 Fecha: {self.fecha_funcion} | 🕒 Hora: {self.hora_funcion}\n"
+            f"🪑 Silla: {self.id_silla} | 🕹 Jornada: {self.jornada}\n"
+            f"💳 Tipo: {self.tipo_transaccion} | 💰 Total: ${self.precio_total}\n"
+            f"📦 Estado: {self.estado}\n"
+        )

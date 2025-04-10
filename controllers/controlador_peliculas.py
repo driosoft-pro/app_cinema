@@ -52,4 +52,10 @@ class ControladorPeliculas:
         self.peliculas.extend(predeterminadas)
 
     def obtener_peliculas_activas(self):
-        return [p for p in self.peliculas if p.estado == 1]   
+        return [p for p in self.peliculas if p.estado == 1]  
+    
+    def obtener_pelicula_por_id(self, id_pelicula: int):
+        for pelicula in self.peliculas:
+            if pelicula.id == id_pelicula:
+                return pelicula
+        return None

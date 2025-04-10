@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime 
 from controllers.controlador_ticket import ControladorTicket
 from controllers.controlador_pagos import ControladorPagos
 from controllers.controlador_salas import ControladorSalas
@@ -142,15 +142,16 @@ def realizar_compra_o_reserva(
     pago = controlador_pagos.registrar_pago(metodo_pago, precio_total, monto_pagado)
 
     ticket = controlador_tickets.registrar_ticket(
-        cliente,
-        pelicula,
-        sala,
-        fecha_funcion,
-        jornada,
-        id_silla,
-        tipo_transaccion,
-        pago.id_pago,
-        precio_total
+        id_usuario=cliente.id_usuario,
+        id_pelicula=pelicula.titulo,
+        sala=sala.tipo,
+        fecha=fecha_funcion,
+        hora=hora,
+        jornada=jornada,
+        id_silla=id_silla,
+        tipo_transaccion=tipo_transaccion,
+        precio_total=precio_total,
+        id_pago=pago.id_pago
     )
 
     controlador_salas.ocupar_silla(tipo_sala, id_silla)
@@ -166,3 +167,45 @@ def realizar_compra_o_reserva(
     print(f"💳 Pago registrado. ID transacción: {pago.id_pago}")
     if metodo_pago == "efectivo":
         print(f"💵 Cambio: ${cambio}")
+
+def cancelar_compra(cliente, controlador_tickets, controlador_salas):
+    print("\n--- CANCELAR COMPRA ---")
+
+    # Filtrar tickets activos del cliente
+    tickets_activos = [
+        ticket for ticket in controlador_tickets.listar_todos_los_tickets()
+        if ticket.id_usuario == cliente.id_usuario and ticket.estado == "activa"
+    ]
+
+    if not tickets_activos:
+        print("No tienes compras o reservas activas para cancelar.")
+        return
+
+    # Mostrar las compras activas
+    for i, ticket in enumerate(tickets_activos, 1):
+        print(f"{i}. Código: {ticket.codigo} | Película: {ticket.id_pelicula} | "
+            f"Sala: {ticket.sala} | Fecha: {ticket.fecha_funcion} | Hora: {ticket.hora_funcion} | "
+            f"Silla: {ticket.id_silla}")
+
+    try:
+        opcion = int(input("Selecciona el número de la compra a cancelar (0 para salir): "))
+        if opcion == 0:
+            print("Cancelación abortada.")
+            return
+
+        ticket_cancelado = tickets_activos[opcion - 1]
+
+        # Liberar la silla ocupada
+        exito = controlador_salas.liberar_silla(ticket_cancelado.sala, ticket_cancelado.id_silla)
+        if exito:
+            print(f"Silla {ticket_cancelado.id_silla} liberada.")
+        else:
+            print("No se pudo liberar la silla (puede que ya esté libre).")
+
+        # Cambiar estado del ticket
+        ticket_cancelado.set_estado("cancelada")
+        print(f"✅ La compra con código {ticket_cancelado.codigo} ha sido cancelada.")
+
+    except (ValueError, IndexError):
+        print("❌ Opción inválida.")
+
