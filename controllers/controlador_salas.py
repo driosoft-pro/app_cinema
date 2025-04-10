@@ -29,6 +29,7 @@ class ControladorSalas:
         if sala:
             return sala.buscar_silla_por_id(id_silla)
         return None
+
     def ocupar_silla(self, tipo_sala: str, id_silla: str) -> bool:
         silla = self.buscar_silla_en_sala(tipo_sala, id_silla)
         if silla and not silla.esta_ocupada():
@@ -42,3 +43,16 @@ class ControladorSalas:
             silla.liberar()
             return True
         return False
+
+    def asignar_funcion_a_sala(self, tipo_sala: str, fecha: str, hora: str) -> bool:
+        sala = self.obtener_sala(tipo_sala)
+        if sala:
+            return sala.agregar_funcion(fecha, hora)
+        return False
+
+    def actualizar_sala(self, sala: Sala):
+        """Actualiza la sala dentro del diccionario."""
+        self.__salas[sala.get_nombre().split()[-1].upper()] = sala
+    
+    def obtener_sala_por_id(self, id_sala: str) -> Union[Sala2D, Sala3D, None]:
+        return self.__salas.get(id_sala.upper())

@@ -47,21 +47,76 @@ Este proyecto es una aplicación en consola desarrollada en Python que permite g
 - **Entorno virtual** para la gestión de dependencias.
 - **PEP8** para la documentación y comentarios del código.
 
+---
+
 ## 🗃️ Estructura del proyecto
 
 ```bash
-sistema_venta_entrada_cinema/
+app_cinema/
 │
-├── app/
-│   ├── main.py
-│   ├── models/
-│   ├── controllers/
-│   ├── views/
-│   ├── services/
-│   └── data/
+├── main.py
+├── .gitignore
+├── README.md
+│
+├── controllers/
+│   ├── __init__.py
+│   ├── controlador_menu_comidas.py
+│   ├── controlador_pagos.py
+│   ├── controlador_peliculas.py
+│   ├── controlador_reservacion.py
+│   ├── controlador_salas.py
+│   ├── controlador_ticket.py
+│   └── controlador_usuarios.py
+│
+├── doc/
+│   ├── diagramaClaseSistemaVentaCinema.png
+│   ├── diagramaFlujoSistemaVentaCinema.png
+│   ├── requerimientos.txt
+│   └── requerimientosDetallados.txt
+│
+├── models/
+│   ├── __init__.py
+│   ├── menu_comidas.py
+│   ├── pagos.py
+│   ├── pelicula.py
+│   ├── reservacion.py
+│   ├── sala.py
+│   ├── silla.py
+│   ├── ticket.py
+│   └── usuario.py
+│
+├── pseudocodigo/
+│   ├── calculo_precios.md
+│   ├── comprar_entrada.md
+│   ├── estructura_principal.md
+│   ├── gestion_peliculas.md
+│   ├── registro_usuario.md
+│   └── validaciones.md
+│
+├── services/
+│   ├── auth_services.py
+│   └── date_utils.py
 │
 ├── tests/
-├── doc/
-├── requirements.txt
-├── .gitignore
-└── README.md
+│   ├── __init__.py
+│   ├── test_controlador_menu_comidas.py
+│   ├── test_controlador_pagos.py
+│   ├── test_controlador_peliculas.py
+│   ├── test_controlador_reservacion.py
+│   ├── test_controlador_sala.py
+│   ├── test_controlador_ticket.py
+│   └── test_controlador_usuarios.py
+│
+└── views/
+    ├── compra_views.py
+    ├── menu_admin.py
+    ├── menu_cliente.py
+    └── peliculas_views.py
+```
+
+---
+
+## Autor
+📌 **By:** Deyton Riascos Ortiz
+            Dana Isabella Mosquera Mosquera
+            Samuel Izquierdo Bonilla 

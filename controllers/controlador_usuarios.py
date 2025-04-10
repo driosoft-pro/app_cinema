@@ -50,3 +50,18 @@ class ControladorUsuarios:
 
     def listar_usuarios(self) -> List[Union[Cliente, Administrador]]:
         return self.usuarios
+    
+    def convertir_a_admin(self, cedula: int) -> bool:
+        usuario = self.buscar_usuario(cedula)
+        if usuario and not isinstance(usuario, Administrador):
+            nuevo_admin = Administrador(
+                usuario.get_cedula(),
+                usuario.get_nombre(),
+                usuario.get_fecha_nacimiento(),
+                usuario.get_correo(),
+                usuario._Usuario__contrasena  # Acceso al atributo privado
+            )
+            self.usuarios.remove(usuario)
+            self.usuarios.append(nuevo_admin)
+            return True
+        return False
