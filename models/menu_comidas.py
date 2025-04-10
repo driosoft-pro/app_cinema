@@ -32,7 +32,7 @@ class Combo(ItemMenu):
     def __init__(self, id_item: int, codigo: str, producto: str, 
                 tamano: str, precio: float, items_incluidos: list,
                 estado: EstadoLiteral = 'activo'):
-        super().__init__(id_item, codigo, 'Combo', producto, tamano, precio, estado)
+        super().__init__(id_item, codigo, 'combo', producto, tamano, precio, estado)
         self.items_incluidos = items_incluidos
         
     def a_diccionario(self) -> dict:
@@ -49,18 +49,18 @@ class Snack(ItemMenu):
     def __init__(self, id_item: int, codigo: str, producto: str, 
                 tamano: str, precio: float, 
                 estado: EstadoLiteral = 'activo'):
-        super().__init__(id_item, codigo, 'Snack', producto, tamano, precio, estado)
+        super().__init__(id_item, codigo, 'snack', producto, tamano, precio, estado)
 
 class Bebida(ItemMenu):
     """Clase para bebidas"""
     def __init__(self, id_item: int, codigo: str, producto: str, 
                 tamano: str, precio: float, 
                 estado: EstadoLiteral = 'activo'):
-        super().__init__(id_item, codigo, 'Bebida', producto, tamano, precio, estado)
+        super().__init__(id_item, codigo, 'bebida', producto, tamano, precio, estado)
 
 class Dulce(ItemMenu):
     """Clase para dulces"""
     def __init__(self, id_item: int, codigo: str, producto: str, 
                 precio: float, 
                 estado: EstadoLiteral = 'activo'):
-        super().__init__(id_item, codigo, 'Dulce', producto, 'Único', precio, estado)
+        super().__init__(id_item, codigo, 'dulce', producto, 'Único', precio, estado)
